@@ -13,10 +13,11 @@ function App() {
     setMessage('⏳ Sending request...');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/login', {
-        username,
-        password,
-      });
+    const response = await axios.post("https://irctcloginautomationfrontend.onrender.com", {
+  username,
+  password
+});
+
       setMessage(res.data.message);
     } catch (err) {
       setMessage('❌ Login failed. Check console.');

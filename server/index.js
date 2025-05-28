@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const { chromium } = require('playwright');
-
+require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -10,7 +10,8 @@ app.use(express.json());
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
-  const browser = await chromium.launch({ headless: false }); // Headless false for CAPTCHA
+  
+const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });// Headless false for CAPTCHA
   const page = await browser.newPage();
 
   try {
